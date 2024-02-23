@@ -1,4 +1,4 @@
-package com.shopme.entity;
+package com.shopme.common.entity;
 
 import jakarta.persistence.*;
 

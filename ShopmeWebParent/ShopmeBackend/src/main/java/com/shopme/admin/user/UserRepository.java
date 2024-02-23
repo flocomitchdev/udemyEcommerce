@@ -1,6 +1,6 @@
-package com.shopme.user;
+package com.shopme.admin.user;
 
-import com.shopme.entity.User;
+import com.shopme.common.entity.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
