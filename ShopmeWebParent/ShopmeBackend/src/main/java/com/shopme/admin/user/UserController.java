@@ -22,7 +22,16 @@ public class UserController {
     }
 
     @GetMapping("/users/new")
-    public String addUserTest(){
+    public String addUserTest(Model userModel){
+        User user = new User();
+        userModel.addAttribute("user",user);
         return "user_form";
+    }
+
+    @PostMapping("/users/save")
+    public String saveUser(User user){
+        System.out.println(user.toString());
+        userService.save(user);
+        return "redirect:/users";
     }
 }
