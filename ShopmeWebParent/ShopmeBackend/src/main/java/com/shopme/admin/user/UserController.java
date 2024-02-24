@@ -1,5 +1,6 @@
 package com.shopme.admin.user;
 
+import com.shopme.common.entity.Role;
 import com.shopme.common.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,8 +24,15 @@ public class UserController {
 
     @GetMapping("/users/new")
     public String addUserTest(Model userModel){
-        User user = new User();
-        userModel.addAttribute("user",user);
+        //creating empty user object
+        User userObject = new User();
+
+        // fetching data from repos
+        List<Role> userRoles = userService.listAllROles();
+
+        //building the user model for frontend injection
+        userModel.addAttribute("user",userObject);
+        userModel.addAttribute("roles", userRoles);
         return "user_form";
     }
 
