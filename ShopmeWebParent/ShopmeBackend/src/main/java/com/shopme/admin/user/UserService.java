@@ -22,7 +22,6 @@ public class UserService {
     }
 
     public List<Role> listAllROles(){
-        System.out.println(roleRepository.findAll());
         return (List<Role>)roleRepository.findAll();
     }
 }

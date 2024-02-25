@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -27,6 +28,9 @@ public class UserController {
         //creating empty user object
         User userObject = new User();
 
+        //A new User is enabled by default
+        userObject.setEnabled(true);
+
         // fetching data from repos
         List<Role> userRoles = userService.listAllROles();
 
@@ -37,9 +41,14 @@ public class UserController {
     }
 
     @PostMapping("/users/save")
-    public String saveUser(User user){
-        System.out.println(user.toString());
+    public String saveUser(User user, RedirectAttributes redirectAttributes){
+        //saving the user in db
         userService.save(user);
+
+        //transmitting an object to the redirected page
+        redirectAttributes.addFlashAttribute("message", "The user has been saved successfully");
+
+        //indicating the template to th
         return "redirect:/users";
     }
 }
