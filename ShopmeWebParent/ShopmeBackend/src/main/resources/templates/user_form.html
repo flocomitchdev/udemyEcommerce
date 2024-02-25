@@ -19,7 +19,8 @@
             th:action="@{/users/save}"
             method="post"
             style="max-width: 700px; margin: 0 auto"
-            th:object="${user}">
+            th:object="${user}"
+            onSubmit="return checkEmailUnique(this)">
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">email*</label>
                 <div class="col-sm-8">
@@ -99,6 +100,20 @@
     <p>Shopme control panel - copyright &copy Shopme, 2024</p>
 </footer>
 
+<script type="text/javascript">
+    function checkEmailUnique(form){
+        url = "[[@{/users/check_unique_email}]]"
+        userEmail = $("#email").val();
+        csrfValue = $("input[name='_csrf']").val();
+        params = {email: userEmail, _csrf: csrfValue};
+
+        $.post( url, params, function(response) {
+            alert("Response from server: " + response);
+            });
+        alert("TEST")
+        return false;
+    }
+</script>
 </body>
 
 </html>
