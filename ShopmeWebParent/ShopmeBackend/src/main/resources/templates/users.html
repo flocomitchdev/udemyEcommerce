@@ -7,6 +7,7 @@
     <title>Home - Shopme Admin</title>
 
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}">
     <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </head>
@@ -58,7 +59,7 @@
 
                 </ul>
             </div>
-        </nav>
+        </nav><!-- NAVBAR -->
     </div>
 </div>
 
@@ -69,7 +70,7 @@
     </div><!-- TITLE -->
     <div th:if="${message != null}" class="alert alert-success text-center">
         [[${message}]]
-    </div>
+    </div><!-- SUCCESS POPUP -->
     <div>
         <table class="table table-bordered table-striped table-hover table-responsive-xl">
             <thead class="thead-light">
@@ -86,13 +87,19 @@
             <tbody>
             <tr th:each="user: ${listUsers}">
                 <td>[[${user.id}]]</td>
-                <td>[[${user.photos}]]</td>
+                <td>
+                    <span class="fa-solid fa-image-portrait"></span>
+                </td>
                 <td>[[${user.firstname}]]</td>
                 <td>[[${user.lastname}]]</td>
                 <td>[[${user.roles}]]</td>
-                <td>[[${user.enabled}]]</td>
-                <td>Edit</td>
-                <td>Delete</td>
+                <td>
+                    <a th:if = "${user.enabled == true}" class="fa-solid fa-circle-check" href=""></a>
+                    <a th:if = "${user.enabled == false}" class="fa-solid fa-circle-xmark" href=""></a>
+
+                </td>
+                <td><a class="fa-solid fa-pen" href=""></a></td>
+                <td><a class="fa-solid fa-trash" href=""></a></td>
             </tr>
             </tbody>
         </table>
